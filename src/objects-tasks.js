@@ -17,8 +17,9 @@
  *    shallowCopy({a: 2, b: { a: [1, 2, 3]}}) => {a: 2, b: { a: [1, 2, 3]}}
  *    shallowCopy({}) => {}
  */
-function shallowCopy(/* obj */) {
-  throw new Error('Not implemented');
+function shallowCopy(obj) {
+  const newObj = {};
+  return Object.assign(newObj, obj);
 }
 
 /**
@@ -32,10 +33,20 @@ function shallowCopy(/* obj */) {
  *    mergeObjects([{a: 1, b: 2}, {b: 3, c: 5}]) => {a: 1, b: 5, c: 5}
  *    mergeObjects([]) => {}
  */
-function mergeObjects(/* objects */) {
-  throw new Error('Not implemented');
+function mergeObjects(objects) {
+  const result = {};
+  for (let i = 0; i < objects.length; i += 1) {
+    const keys = Object.keys(objects[i]);
+    for (let j = 0; j < keys.length; j += 1) {
+      if (typeof result[keys[j]] !== 'undefined') {
+        result[keys[j]] += objects[i][keys[j]];
+      } else {
+        result[keys[j]] = objects[i][keys[j]];
+      }
+    }
+  }
+  return result;
 }
-
 /**
  * Removes a properties from an object.
  *
@@ -50,6 +61,12 @@ function mergeObjects(/* objects */) {
  *
  */
 function removeProperties(/* obj, keys */) {
+  // for (let i = 0; i < obj.length; i += 1) {
+  //   if (obj[i] === keys[obj]) {
+  //     Reflect.deleteProperty(obj, obj[i]);
+  //   }
+  // }
+  // return obj;
   throw new Error('Not implemented');
 }
 
