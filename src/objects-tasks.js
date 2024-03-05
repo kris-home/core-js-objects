@@ -158,8 +158,22 @@ function makeWord(lettersObject) {
  *    sellTickets([25, 25, 50]) => true
  *    sellTickets([25, 100]) => false (The seller does not have enough money to give change.)
  */
-function sellTickets(/* queue */) {
-  throw new Error('Not implemented');
+function sellTickets(queue) {
+  let change = 0;
+  if (queue.length === 0) {
+    return true;
+  }
+  if (queue[0] === 25) {
+    change += 25;
+    for (let i = 1; i < queue.length; i += 1) {
+      if (queue[i] - 25 >= change) {
+        return false;
+      }
+      change += queue[i] - (queue[i] - 25);
+    }
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -176,6 +190,11 @@ function sellTickets(/* queue */) {
  *    console.log(r.getArea());   // => 200
  */
 function Rectangle(/* width, height */) {
+  // this.width = width;
+  // this.height = height;
+  // getArea() {
+  //   this.width * this.height;
+  // }
   throw new Error('Not implemented');
 }
 
@@ -189,8 +208,8 @@ function Rectangle(/* width, height */) {
  *    [1,2,3]   =>  '[1,2,3]'
  *    { width: 10, height : 20 } => '{"height":10,"width":20}'
  */
-function getJSON(/* obj */) {
-  throw new Error('Not implemented');
+function getJSON(obj) {
+  return JSON.stringify(obj);
 }
 
 /**
@@ -204,8 +223,10 @@ function getJSON(/* obj */) {
  *    const r = fromJSON(Circle.prototype, '{"radius":10}');
  *
  */
-function fromJSON(/* proto, json */) {
-  throw new Error('Not implemented');
+function fromJSON(proto, json) {
+  const obj = JSON.parse(json);
+  const values = Object.values(obj);
+  return new proto.constructor(...values);
 }
 
 /**
@@ -235,6 +256,12 @@ function fromJSON(/* proto, json */) {
  *    ]
  */
 function sortCitiesArray(/* arr */) {
+  // return arr.sort((a, b) => {
+  //   a.country > b.country ? 1 : -1;
+  //   if (a.country === b.country) {
+
+  //   }
+  // });
   throw new Error('Not implemented');
 }
 
