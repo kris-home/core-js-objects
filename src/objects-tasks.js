@@ -189,13 +189,12 @@ function sellTickets(queue) {
  *    console.log(r.height);      // => 20
  *    console.log(r.getArea());   // => 200
  */
-function Rectangle(/* width, height */) {
-  // this.width = width;
-  // this.height = height;
-  // getArea() {
-  //   this.width * this.height;
-  // }
-  throw new Error('Not implemented');
+function Rectangle(width, height) {
+  this.width = width;
+  this.height = height;
+  this.getArea = function getArea() {
+    return this.width * this.height;
+  };
 }
 
 /**
@@ -255,14 +254,13 @@ function fromJSON(proto, json) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  *    ]
  */
-function sortCitiesArray(/* arr */) {
-  // return arr.sort((a, b) => {
-  //   a.country > b.country ? 1 : -1;
-  //   if (a.country === b.country) {
-
-  //   }
-  // });
-  throw new Error('Not implemented');
+function sortCitiesArray(arr) {
+  return arr.sort((a, b) => {
+    if (a.country === b.country) {
+      return a.city.localeCompare(b.city);
+    }
+    return a.country.localeCompare(b.country);
+  });
 }
 
 /**
